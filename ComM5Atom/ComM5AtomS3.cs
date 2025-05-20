@@ -12,6 +12,7 @@ using System.Drawing.Imaging;
 
 namespace ComM5Atom
 {
+
 	public class RecevedEventArgs : EventArgs
 	{
 		public string Tag;
@@ -34,6 +35,7 @@ namespace ComM5Atom
 	}
 	public class ComM5AtomS3
 	{
+		private bool _chkMode = false;
 		public delegate void RecevedEventHandler(object sender, RecevedEventArgs e);
 		public event RecevedEventHandler Receved;
 
@@ -59,24 +61,61 @@ namespace ComM5Atom
 		}
 		public ComM5AtomS3()
 		{
-			ListupPort();
+			//ListupPort();
 			serialPort.DataReceived += SerialPort_DataReceived;
 		}
 
 		private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
 		{
-			while (serialPort.BytesToRead < 8) {; }
-			int bytesToRead = serialPort.BytesToRead;
+			if(_chkMode) return;
+			RecevedEventArgs rc = new RecevedEventArgs("", 0, new byte[0]);
+
+			if(GetSerialData(out rc) == true)
+			{
+				OnReceived(rc);
+			}
+
+		}
+		
+		private bool GetSerialData(out RecevedEventArgs rc)
+		{
+			bool ret = false;
+			rc = new RecevedEventArgs("", 0, new byte[0]);
+
+			if (serialPort.IsOpen == false)
+			{
+				return ret;
+			}
+			int retry = 100;
+			//待つ
+			while (serialPort.BytesToRead < 8) 
+			{
+				System.Threading.Thread.Sleep(100);
+				retry--;
+				if (retry<=0)
+				{
+					return ret;
+				}
+			}
+			//int bytesToRead = serialPort.BytesToRead;
 			byte[] tt = new byte[4];
 			byte[] ll = new byte[4];
 
-			serialPort.Read(tt, 0, 4);
-			serialPort.Read(ll, 0, 4);
+			if (serialPort.Read(tt, 0, 4) != 4) return ret;
+			var encoding = Encoding.GetEncoding("UTF-8");
+			rc.Tag = encoding.GetString(tt);
+			if (serialPort.Read(ll, 0, 4) != 4) return ret;
 			int size = BitConverter.ToInt32(ll, 0);
+			rc.Size = size;
+			if(size <= 0)
+			{
+				ret = true;
+				return ret;
+			}
 			byte[] buffer = new byte[size];
 			int cnt = 0;
 			int err = 0;
-			while (cnt<size) 
+			while (cnt < size)
 			{
 				int rd = serialPort.BytesToRead;
 				if (rd <= 0)
@@ -93,20 +132,18 @@ namespace ComM5Atom
 				if (rd > size - cnt) rd = size - cnt;
 				cnt += serialPort.Read(buffer, cnt, rd);
 			}
-			if (cnt<size)
+			if (cnt < size)
 			{
 				Array.Resize(ref buffer, cnt);
 			}
-			var encoding = Encoding.GetEncoding("UTF-8");
-			OnReceived(new RecevedEventArgs(
-				encoding.GetString(tt),
-				size,
-				buffer
-				));
+			rc.Data = buffer;
+			ret = (cnt==size);
+			return ret;
 		}
+
 		public string[] ListupPort()
 		{
-			_portList = SerialPort.GetPortNames();
+			chkPortM5Stack();
 			return _portList;
 		}
 		public string[] GetDeviceNames()
@@ -151,6 +188,63 @@ namespace ComM5Atom
 			{
 				return null;
 			}
+		}
+		private bool OpenPortOn(string nm)
+		{
+			if (serialPort.IsOpen)
+			{
+				serialPort.Close();
+			}
+			try
+			{
+				serialPort.PortName = nm;
+				serialPort.BaudRate = 115200;
+				serialPort.DataBits = 8;
+				serialPort.Parity = Parity.None;
+				serialPort.StopBits = StopBits.One;
+				serialPort.Handshake = Handshake.None;
+				serialPort.DtrEnable = false;
+				serialPort.RtsEnable = false;
+				serialPort.WriteBufferSize = 51200;
+				serialPort.Open();
+			}
+			catch
+			{
+				return false;
+			}
+			return serialPort.IsOpen;
+		}
+		private bool chkPortM5Stack()
+		{
+			_portList = new string[0];
+			if (serialPort.IsOpen)
+			{
+				serialPort.Close();
+			}
+			string[] lst = SerialPort.GetPortNames();
+			if(lst.Length == 0) return false;
+			List<string> lst2 = new List<string>();
+			_chkMode = true;
+			foreach (string nm in lst)
+			{
+				if (OpenPortOn(nm))
+				{
+					if (SendBinData("m5sk", "cnk"))
+					{
+						RecevedEventArgs rc = new RecevedEventArgs("", 0, new byte[0]);
+						if(GetSerialData(out rc) == true)
+						{
+							if (rc.Tag == "m5sk")
+							{
+								lst2.Add(nm);
+							}
+						}
+					}
+				}
+			}
+			_chkMode = false;
+			_portList = lst2.ToArray();
+			return (_portList.Length > 0);
 		}
 		public bool OpenPort(int idx = 0)
 		{
@@ -199,7 +293,12 @@ namespace ComM5Atom
 				return ret;
 			}
 			byte[] bdata = System.Text.Encoding.UTF8.GetBytes(data + '\0');
-			serialPort.Write(bdata, 0, bdata.Length);
+			byte[] head = CreateHeader(tag, bdata.Length);
+			serialPort.Write(head, 0, head.Length);
+			if (bdata.Length > 0)
+			{
+				serialPort.Write(bdata, 0, bdata.Length);
+			}
 			ret = true;
 			return ret;
 		}
@@ -244,14 +343,6 @@ namespace ComM5Atom
 				return ms.ToArray();
 			}
 		}
-		/*
-		public string BitmapEncode(Bitmap bitmap, long quality = 90L)
-		{
-			byte[] jpegData = CompressBitmapToJpeg(bitmap);
-			return Convert.ToBase64String(jpegData);
-
-		}
-		*/
 		private byte[] CreateHeader(string head, long sz)
 		{
 			byte[] header = new byte[8];

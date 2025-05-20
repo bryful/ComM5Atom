@@ -58,7 +58,7 @@ namespace ComM5Atom
 					}
 				}*/
 			};
-			ListupPort();
+			//ListupPort();
 			cmbPortList.SelectedIndexChanged += (sender, e) =>
 			{
 				btnSend.Enabled = (cmbPortList.SelectedIndex >= 0);
