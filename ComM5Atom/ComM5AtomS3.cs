@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Timers;
 
 namespace ComM5Atom
 {
@@ -61,9 +62,12 @@ namespace ComM5Atom
 		}
 		public ComM5AtomS3()
 		{
+
 			//ListupPort();
 			serialPort.DataReceived += SerialPort_DataReceived;
 		}
+
+		
 
 		private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
 		{
@@ -244,6 +248,7 @@ namespace ComM5Atom
 			}
 			_chkMode = false;
 			_portList = lst2.ToArray();
+			_PortIndex = _portList.Length-1;
 			return (_portList.Length > 0);
 		}
 		public bool OpenPort(int idx = 0)
@@ -408,7 +413,6 @@ namespace ComM5Atom
 		}
 		public void SetSkin(int v)
 		{
-			int ret = -1;
 			if (serialPort.IsOpen)
 			{
 				SendBinData("sskn", BitConverter.GetBytes(v));

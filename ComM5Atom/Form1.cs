@@ -70,9 +70,10 @@ namespace ComM5Atom
 			cmbPortList.Items.AddRange(comM5Atom.ListupPort());
 			if(cmbPortList.Items.Count > 0)
 			{
-				cmbPortList.SelectedIndex = 0;
+				cmbPortList.SelectedIndex = comM5Atom.PortIndex;
 			}
 			btnSend.Enabled = (cmbPortList.SelectedIndex >= 0);
+			gpSkin.Enabled = (cmbPortList.SelectedIndex >= 0);
 		}
 		private bool chekPort()
 		{

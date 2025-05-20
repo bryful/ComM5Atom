@@ -36,11 +36,10 @@
 			this.cmbPortList = new System.Windows.Forms.ComboBox();
 			this.bntPortList = new System.Windows.Forms.Button();
 			this.gpSkin = new System.Windows.Forms.GroupBox();
+			this.m3StackColorBar1 = new ComM5Atom.M3StackColorBar();
 			this.btnClear = new System.Windows.Forms.Button();
 			this.gbSend = new System.Windows.Forms.GroupBox();
 			this.gpRecived = new System.Windows.Forms.GroupBox();
-			this.button1 = new System.Windows.Forms.Button();
-			this.m3StackColorBar1 = new ComM5Atom.M3StackColorBar();
 			this.gpSkin.SuspendLayout();
 			this.gbSend.SuspendLayout();
 			this.gpRecived.SuspendLayout();
@@ -61,6 +60,7 @@
 			// btnSend
 			// 
 			this.btnSend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnSend.Enabled = false;
 			this.btnSend.Location = new System.Drawing.Point(377, 179);
 			this.btnSend.Name = "btnSend";
 			this.btnSend.Size = new System.Drawing.Size(98, 23);
@@ -127,12 +127,24 @@
 			this.gpSkin.Controls.Add(this.m3StackColorBar1);
 			this.gpSkin.Controls.Add(this.BtnGetSkin);
 			this.gpSkin.Controls.Add(this.BtnSetSkin);
+			this.gpSkin.Enabled = false;
 			this.gpSkin.Location = new System.Drawing.Point(515, 12);
 			this.gpSkin.Name = "gpSkin";
 			this.gpSkin.Size = new System.Drawing.Size(156, 157);
 			this.gpSkin.TabIndex = 4;
 			this.gpSkin.TabStop = false;
 			this.gpSkin.Text = "SkinColor";
+			// 
+			// m3StackColorBar1
+			// 
+			this.m3StackColorBar1.ColorValue = 30;
+			this.m3StackColorBar1.Location = new System.Drawing.Point(21, 18);
+			this.m3StackColorBar1.MaximumSize = new System.Drawing.Size(130, 60);
+			this.m3StackColorBar1.MinimumSize = new System.Drawing.Size(130, 60);
+			this.m3StackColorBar1.Name = "m3StackColorBar1";
+			this.m3StackColorBar1.Size = new System.Drawing.Size(130, 60);
+			this.m3StackColorBar1.TabIndex = 0;
+			this.m3StackColorBar1.Text = "m3StackColorBar1";
 			// 
 			// btnClear
 			// 
@@ -163,7 +175,6 @@
 			// 
 			this.gpRecived.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.gpRecived.Controls.Add(this.button1);
 			this.gpRecived.Controls.Add(this.tbRecive);
 			this.gpRecived.Controls.Add(this.btnClear);
 			this.gpRecived.Location = new System.Drawing.Point(7, 259);
@@ -172,27 +183,6 @@
 			this.gpRecived.TabIndex = 3;
 			this.gpRecived.TabStop = false;
 			this.gpRecived.Text = "Recived";
-			// 
-			// button1
-			// 
-			this.button1.Location = new System.Drawing.Point(120, 129);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(75, 23);
-			this.button1.TabIndex = 5;
-			this.button1.Text = "button1";
-			this.button1.UseVisualStyleBackColor = true;
-			this.button1.Click += new System.EventHandler(this.button1_Click);
-			// 
-			// m3StackColorBar1
-			// 
-			this.m3StackColorBar1.ColorValue = 30;
-			this.m3StackColorBar1.Location = new System.Drawing.Point(21, 18);
-			this.m3StackColorBar1.MaximumSize = new System.Drawing.Size(130, 60);
-			this.m3StackColorBar1.MinimumSize = new System.Drawing.Size(130, 60);
-			this.m3StackColorBar1.Name = "m3StackColorBar1";
-			this.m3StackColorBar1.Size = new System.Drawing.Size(130, 60);
-			this.m3StackColorBar1.TabIndex = 0;
-			this.m3StackColorBar1.Text = "m3StackColorBar1";
 			// 
 			// Form1
 			// 
@@ -228,7 +218,6 @@
 		private System.Windows.Forms.Button btnClear;
 		private System.Windows.Forms.GroupBox gbSend;
 		private System.Windows.Forms.GroupBox gpRecived;
-		private System.Windows.Forms.Button button1;
 	}
 }
 
