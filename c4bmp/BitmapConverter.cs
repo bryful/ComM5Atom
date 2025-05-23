@@ -35,7 +35,6 @@ namespace c4bmp
 		};
 		public BitmapConverter()
 		{
-			ChkkPalette();
 		}
 		// 16色のパレットを指定して24bpp -> 4bpp Indexedに変換
 		public Bitmap Convert24bppTo4bpp(Bitmap original)
@@ -140,17 +139,6 @@ namespace c4bmp
 			return closestIndex;
 		}
 
-		public void ChkkPalette()
-		{
-			for (int i = 0; i < paletteColors.Length; i++)
-			{
-				Color c = paletteColors[i];
-				byte r = (byte)( (c.R *31/ 255) *255 / 31 );
-				byte g = (byte)((c.R * 63 / 255) * 255 / 63);
-				byte b = (byte)((c.R * 31 / 255) * 255 / 31);
-				paletteColors[i] = Color.FromArgb(255, r, g, b);
-			}
-		}
 		public bool LoadPalFile(string s)
 		{
 			bool ret = false;
@@ -169,7 +157,6 @@ namespace c4bmp
 						pals[i] = Color.FromArgb(0xFF, (cc >> 16) & 0xFF, (cc >> 8) & 0xFF, cc & 0xFF);
 					}
 					paletteColors = pals;
-					ChkkPalette();
 					ret = true;
 				}
 				else
