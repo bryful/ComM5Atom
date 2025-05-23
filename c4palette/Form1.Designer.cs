@@ -40,7 +40,10 @@
 			this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.copyMenu = new System.Windows.Forms.ToolStripMenuItem();
 			this.pasteMenu = new System.Windows.Forms.ToolStripMenuItem();
+			this.btnOpen = new System.Windows.Forms.Button();
+			this.previewPanel1 = new c4palette.PreviewPanel();
 			this.paletteCanvas1 = new c4palette.PaletteCanvas();
+			this.cbSpoit = new System.Windows.Forms.CheckBox();
 			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -72,41 +75,41 @@
 			// openMenu
 			// 
 			this.openMenu.Name = "openMenu";
-			this.openMenu.Size = new System.Drawing.Size(180, 22);
+			this.openMenu.Size = new System.Drawing.Size(130, 22);
 			this.openMenu.Text = "Open";
 			// 
 			// saveMenu
 			// 
 			this.saveMenu.Name = "saveMenu";
-			this.saveMenu.Size = new System.Drawing.Size(180, 22);
+			this.saveMenu.Size = new System.Drawing.Size(130, 22);
 			this.saveMenu.Text = "Save";
 			// 
 			// toolStripMenuItem1
 			// 
 			this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-			this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
+			this.toolStripMenuItem1.Size = new System.Drawing.Size(127, 6);
 			// 
 			// importPngMenu
 			// 
 			this.importPngMenu.Name = "importPngMenu";
-			this.importPngMenu.Size = new System.Drawing.Size(180, 22);
+			this.importPngMenu.Size = new System.Drawing.Size(130, 22);
 			this.importPngMenu.Text = "ImportPng";
 			// 
 			// exportPngMenu
 			// 
 			this.exportPngMenu.Name = "exportPngMenu";
-			this.exportPngMenu.Size = new System.Drawing.Size(180, 22);
+			this.exportPngMenu.Size = new System.Drawing.Size(130, 22);
 			this.exportPngMenu.Text = "ExportPng";
 			// 
 			// toolStripMenuItem2
 			// 
 			this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-			this.toolStripMenuItem2.Size = new System.Drawing.Size(177, 6);
+			this.toolStripMenuItem2.Size = new System.Drawing.Size(127, 6);
 			// 
 			// quitMenu
 			// 
 			this.quitMenu.Name = "quitMenu";
-			this.quitMenu.Size = new System.Drawing.Size(180, 22);
+			this.quitMenu.Size = new System.Drawing.Size(130, 22);
 			this.quitMenu.Text = "Quit";
 			// 
 			// editToolStripMenuItem
@@ -132,6 +135,23 @@
 			this.pasteMenu.Size = new System.Drawing.Size(142, 22);
 			this.pasteMenu.Text = "Paste";
 			// 
+			// btnOpen
+			// 
+			this.btnOpen.Location = new System.Drawing.Point(12, 89);
+			this.btnOpen.Name = "btnOpen";
+			this.btnOpen.Size = new System.Drawing.Size(75, 23);
+			this.btnOpen.TabIndex = 3;
+			this.btnOpen.Text = "Open";
+			this.btnOpen.UseVisualStyleBackColor = true;
+			// 
+			// previewPanel1
+			// 
+			this.previewPanel1.Location = new System.Drawing.Point(93, 89);
+			this.previewPanel1.Name = "previewPanel1";
+			this.previewPanel1.Size = new System.Drawing.Size(300, 300);
+			this.previewPanel1.TabIndex = 2;
+			this.previewPanel1.Text = "previewPanel1";
+			// 
 			// paletteCanvas1
 			// 
 			this.paletteCanvas1.Location = new System.Drawing.Point(12, 27);
@@ -142,10 +162,23 @@
 			this.paletteCanvas1.TabIndex = 0;
 			this.paletteCanvas1.Text = "paletteCanvas1";
 			// 
+			// cbSpoit
+			// 
+			this.cbSpoit.AutoSize = true;
+			this.cbSpoit.Location = new System.Drawing.Point(37, 118);
+			this.cbSpoit.Name = "cbSpoit";
+			this.cbSpoit.Size = new System.Drawing.Size(50, 16);
+			this.cbSpoit.TabIndex = 4;
+			this.cbSpoit.Text = "Spoit";
+			this.cbSpoit.UseVisualStyleBackColor = true;
+			// 
 			// Form1
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.ClientSize = new System.Drawing.Size(551, 88);
+			this.ClientSize = new System.Drawing.Size(551, 407);
+			this.Controls.Add(this.cbSpoit);
+			this.Controls.Add(this.btnOpen);
+			this.Controls.Add(this.previewPanel1);
 			this.Controls.Add(this.paletteCanvas1);
 			this.Controls.Add(this.menuStrip1);
 			this.MainMenuStrip = this.menuStrip1;
@@ -177,6 +210,9 @@
 		private System.Windows.Forms.ToolStripMenuItem exportPngMenu;
 		private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
 		private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+		private PreviewPanel previewPanel1;
+		private System.Windows.Forms.Button btnOpen;
+		private System.Windows.Forms.CheckBox cbSpoit;
 	}
 }
 

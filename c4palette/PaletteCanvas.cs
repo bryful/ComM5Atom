@@ -33,6 +33,10 @@ namespace c4palette
 		};
 		private Size baseSize = new Size(32	, 32);	
 		private int _SelectedIndex = -1;
+		public int SelectedIndex
+		{
+			get { return _SelectedIndex; }
+		}
 		private int _DispHeight = 20;
 		private TextBox _txtDisp = new TextBox();
 		private Button _btnSet = new Button();
@@ -372,6 +376,15 @@ true);
 					Color c = bitmap.GetPixel(x, y);
 					_paletteColors[i] = c;
 				}
+				this.Invalidate();
+			}
+		}
+		public void SetColor(int idx , Color c)
+		{
+			if (idx >= 0 && idx < 16)
+			{
+				_paletteColors[idx] = c;
+				_txtDisp.Text = ColotrToHex(_paletteColors[idx]);
 				this.Invalidate();
 			}
 		}
