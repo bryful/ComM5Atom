@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "c4bmp", "c4bmp\c4bmp.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "c4palette", "c4palette\c4palette.csproj", "{18B3BCBD-803E-41E2-9290-55479C172FDC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComBoard", "ComBoard\ComBoard.csproj", "{712C9E61-F426-4DF1-BEDA-1CE1903EB19D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{18B3BCBD-803E-41E2-9290-55479C172FDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18B3BCBD-803E-41E2-9290-55479C172FDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18B3BCBD-803E-41E2-9290-55479C172FDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{712C9E61-F426-4DF1-BEDA-1CE1903EB19D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{712C9E61-F426-4DF1-BEDA-1CE1903EB19D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{712C9E61-F426-4DF1-BEDA-1CE1903EB19D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{712C9E61-F426-4DF1-BEDA-1CE1903EB19D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
