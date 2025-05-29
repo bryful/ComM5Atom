@@ -233,12 +233,12 @@ namespace ComM5Atom
 			{
 				if (OpenPortOn(nm))
 				{
-					if (SendBinData("m5sk", "cnk"))
+					if (SendBinData("info", "cnk"))
 					{
 						RecevedEventArgs rc = new RecevedEventArgs("", 0, new byte[0]);
 						if(GetSerialData(out rc) == true)
 						{
-							if (rc.Tag == "m5sk")
+							if (rc.Tag == "info")
 							{
 								lst2.Add(nm);
 							}

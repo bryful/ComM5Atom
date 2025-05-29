@@ -36,13 +36,18 @@
 			this.cmbPortList = new System.Windows.Forms.ComboBox();
 			this.bntPortList = new System.Windows.Forms.Button();
 			this.gpSkin = new System.Windows.Forms.GroupBox();
-			this.m3StackColorBar1 = new ComM5Atom.M3StackColorBar();
 			this.btnClear = new System.Windows.Forms.Button();
 			this.gbSend = new System.Windows.Forms.GroupBox();
 			this.gpRecived = new System.Windows.Forms.GroupBox();
+			this.m3StackColorBar1 = new ComM5Atom.M3StackColorBar();
+			this.gpWifi = new System.Windows.Forms.GroupBox();
+			this.tbSSID = new System.Windows.Forms.TextBox();
+			this.tbPASSWORD = new System.Windows.Forms.TextBox();
+			this.btnWifi = new System.Windows.Forms.Button();
 			this.gpSkin.SuspendLayout();
 			this.gbSend.SuspendLayout();
 			this.gpRecived.SuspendLayout();
+			this.gpWifi.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// tbSend
@@ -135,17 +140,6 @@
 			this.gpSkin.TabStop = false;
 			this.gpSkin.Text = "SkinColor";
 			// 
-			// m3StackColorBar1
-			// 
-			this.m3StackColorBar1.ColorValue = 30;
-			this.m3StackColorBar1.Location = new System.Drawing.Point(21, 18);
-			this.m3StackColorBar1.MaximumSize = new System.Drawing.Size(130, 60);
-			this.m3StackColorBar1.MinimumSize = new System.Drawing.Size(130, 60);
-			this.m3StackColorBar1.Name = "m3StackColorBar1";
-			this.m3StackColorBar1.Size = new System.Drawing.Size(130, 60);
-			this.m3StackColorBar1.TabIndex = 0;
-			this.m3StackColorBar1.Text = "m3StackColorBar1";
-			// 
 			// btnClear
 			// 
 			this.btnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -184,11 +178,59 @@
 			this.gpRecived.TabStop = false;
 			this.gpRecived.Text = "Recived";
 			// 
+			// m3StackColorBar1
+			// 
+			this.m3StackColorBar1.ColorValue = 30;
+			this.m3StackColorBar1.Location = new System.Drawing.Point(21, 18);
+			this.m3StackColorBar1.MaximumSize = new System.Drawing.Size(130, 60);
+			this.m3StackColorBar1.MinimumSize = new System.Drawing.Size(130, 60);
+			this.m3StackColorBar1.Name = "m3StackColorBar1";
+			this.m3StackColorBar1.Size = new System.Drawing.Size(130, 60);
+			this.m3StackColorBar1.TabIndex = 0;
+			this.m3StackColorBar1.Text = "m3StackColorBar1";
+			// 
+			// gpWifi
+			// 
+			this.gpWifi.Controls.Add(this.btnWifi);
+			this.gpWifi.Controls.Add(this.tbPASSWORD);
+			this.gpWifi.Controls.Add(this.tbSSID);
+			this.gpWifi.Location = new System.Drawing.Point(515, 184);
+			this.gpWifi.Name = "gpWifi";
+			this.gpWifi.Size = new System.Drawing.Size(151, 116);
+			this.gpWifi.TabIndex = 5;
+			this.gpWifi.TabStop = false;
+			this.gpWifi.Text = "groupBox1";
+			// 
+			// tbSSID
+			// 
+			this.tbSSID.Location = new System.Drawing.Point(21, 18);
+			this.tbSSID.Name = "tbSSID";
+			this.tbSSID.Size = new System.Drawing.Size(100, 19);
+			this.tbSSID.TabIndex = 0;
+			// 
+			// tbPASSWORD
+			// 
+			this.tbPASSWORD.Location = new System.Drawing.Point(21, 45);
+			this.tbPASSWORD.Name = "tbPASSWORD";
+			this.tbPASSWORD.Size = new System.Drawing.Size(100, 19);
+			this.tbPASSWORD.TabIndex = 1;
+			// 
+			// btnWifi
+			// 
+			this.btnWifi.Location = new System.Drawing.Point(46, 75);
+			this.btnWifi.Name = "btnWifi";
+			this.btnWifi.Size = new System.Drawing.Size(75, 23);
+			this.btnWifi.TabIndex = 2;
+			this.btnWifi.Text = "Wifi";
+			this.btnWifi.UseVisualStyleBackColor = true;
+			this.btnWifi.Click += new System.EventHandler(this.btnWifi_Click);
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(692, 443);
+			this.Controls.Add(this.gpWifi);
 			this.Controls.Add(this.gpRecived);
 			this.Controls.Add(this.gbSend);
 			this.Controls.Add(this.gpSkin);
@@ -201,6 +243,8 @@
 			this.gbSend.PerformLayout();
 			this.gpRecived.ResumeLayout(false);
 			this.gpRecived.PerformLayout();
+			this.gpWifi.ResumeLayout(false);
+			this.gpWifi.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
@@ -218,6 +262,10 @@
 		private System.Windows.Forms.Button btnClear;
 		private System.Windows.Forms.GroupBox gbSend;
 		private System.Windows.Forms.GroupBox gpRecived;
+		private System.Windows.Forms.GroupBox gpWifi;
+		private System.Windows.Forms.Button btnWifi;
+		private System.Windows.Forms.TextBox tbPASSWORD;
+		private System.Windows.Forms.TextBox tbSSID;
 	}
 }
 

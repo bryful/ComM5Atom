@@ -138,5 +138,14 @@ namespace ComM5Atom
 			tbRecive.AppendText(str + "\r\n");
 		}
 
+		private void btnWifi_Click(object sender, EventArgs e)
+		{
+			if (chekPort() == false) return;
+
+			string ss = tbSSID.Text.Trim();
+			string pp = tbPASSWORD.Text.Trim();
+			if ((ss.Length == 0)||(pp.Length==0)) return;
+			comM5Atom.SendBinData("wifi",ss+","+pp);
+		}
 	}
 }
